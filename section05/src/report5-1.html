@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function sum(...param){ // rest 연산자가 배열로 받음
+            let total = 0;
+            for(let i=0; i<param.length; i++){
+                total += param[i];
+            }
+            return total;
+        }
+        let arr = [10, 30, 60];
+        let number = parseFloat(prompt("숫자를 입력하세요: "));
+
+        let result = sum(...arr, number); // 스프레드 연산자
+        alert(`배열 [${arr}] 와 숫자 ${number} 의 합은 ${result} 입니다.`);
+    </script>
+</head>
+<body>
+    <h2>막강한 sum 함수</h2>
+</body>
+</html>

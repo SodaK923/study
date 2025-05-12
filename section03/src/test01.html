@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>randomColor 활용</title>
+    <style>
+        body{
+            padding: 20px;
+            text-align: center;
+        }
+        #colorBox{
+            width: 200px;
+            height: 200px;
+            margin: auto;
+            border: 1px solid black;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>randomColor 라이브러리 활용</h2>
+    <div id="colorBox"></div>
+    <button onclick="changeColor()">색상변경</button>
+
+    <!-- randomColor CDN 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/randomcolor@latest/randomColor.min.js"></script>
+    <script>
+        function changeColor(){
+            const newColor=randomColor();
+            document.getElementById("colorBox").style.backgroundColor=newColor;
+        }
+    </script>
+</body>
+</html>

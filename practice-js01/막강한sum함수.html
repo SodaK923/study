@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        sum=(...arr)=>{
+            let total=0;
+            for(let i=0; i<arr.length; i++){
+                total+=arr[i];
+            }
+            return total;
+        }
+
+        let arr=[1,2,3];
+        let input = Number(prompt('숫자 입력'));
+        alert(`[${arr}]요소들과 ${input}의 합=${sum(...arr, input)}입니다.`);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

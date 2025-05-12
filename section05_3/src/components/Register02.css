@@ -1,0 +1,15 @@
+button{
+    margin-right: 10px;
+}
+
+.col1{
+    width: 70px;
+}
+
+.bio{
+    vertical-align: top;
+}
+
+textarea{
+    width: 250px;
+}

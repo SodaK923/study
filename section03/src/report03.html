@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const inputNum1 = prompt("숫자1 입력");
+        const inputNum2 = prompt("숫자2 입력");
+
+        const a = Number(inputNum1);
+        const b = Number(inputNum2);
+
+        let sum=(a,b)=> a+b;
+
+        let avg=(a,b)=>(a+b)/2;
+
+        let max=(a,b)=>Math.max(a,b);
+
+        let min=(a,b)=>Math.min(a,b);
+
+        alert(`입력받은 ${a}과 ${b}의 합계는 ${sum(a,b)}, 평균은 ${avg(a,b)}, 최대값 ${max(a,b)}, 최소값 ${min(a,b)} 입니다.`);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
