@@ -1,0 +1,10 @@
+.col1{
+    width: 60px;
+}
+button{
+    width: 100px;
+    margin-top: 10px;
+}
+#result{
+    color: lightsteelblue;
+}
