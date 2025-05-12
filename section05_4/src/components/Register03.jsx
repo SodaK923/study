@@ -1,9 +1,29 @@
 import "./Register03.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import Even from './Even';
+
+// ref: 값이 바뀌어도 렌더링이 되지 않는다(화면이 갱신되지 않는다)
+// state: 값이 바뀔 때마다 렌더링이 된다
 
 const Register03=()=>{
   const [name, setName]=useState("");
   const [id, setId]=useState("");
+  const [count, setCount]=useState(0);
+  const isMount=useRef(false);
+
+  // useEffect(콜백함수, 의존성배열);
+  useEffect(()=>{
+    console.log(`마운트: count: ${count}, name: ${name}`);
+  }, []); // 마운트될 때만 실행
+
+  useEffect(()=>{
+    if(!isMount.current){
+      isMount.current=true;
+      return;
+    }
+
+    console.log("업데이트 만")
+  }); // 업데이트될 때만 실행
 
   // 화면 갱신이 일어나지 않음(useState: 화면갱신)
   const refObj=useRef(100);
@@ -45,36 +65,6 @@ const Register03=()=>{
     result.innerHTML=`<p>이름: ${name}, 아이디: ${id} </p>`;
   }
 
-//   const onSubmit = () => {
-//   let result = document.getElementById("result");
-
-//   if (name === "" && id === "") {
-//     inputRef.current.focus();
-//     result.innerHTML = "* 이름과 아이디를 모두 입력하세요.";
-//     return;
-//   }
-
-//   if (name === "") {
-//     inputRef.current.focus();
-//     result.innerHTML = "* 이름을 입력하세요.";
-//     return;
-//   }
-
-//   if (id === "") {
-//     idRef.current.focus();
-//     result.innerHTML = "* 아이디를 입력하세요.";
-//     return;
-//   }
-
-//   if (id.length < 5) {
-//     idRef.current.focus();
-//     result.innerHTML = "* 아이디는 5글자 이상 입력해야 함";
-//     return;
-//   }
-
-//   result.innerHTML = `<p>이름: ${name}, 아이디: ${id} </p>`;
-// };
-
 
   const onClear=()=>{
     inputRef.current.value="";
@@ -112,7 +102,11 @@ const Register03=()=>{
             <button onClick={()=>{
               refObj.current++;
               console.log(refObj.current);
-            }}>ref+1</button>
+            }}>ref+1</button>{refObj.current}<br />
+            <button onClick={()=>{
+              setCount(count+1);
+            }}>count+1</button> {count}
+            {count%2===0 && <Even />}
         </div>
     );
 }
