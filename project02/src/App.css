@@ -1,42 +1,17 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.App{
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    /* ~경계선까지가 박스다~ */
+    box-sizing: border-box;
+    padding: 20px;
+    /* border: 1px solid grey; */
+    /* 수평으로 배치 */
+    display: flex;
+    /* display한거를 수직으로 재배치 */
+    flex-direction: column;
+    /* 요소 간 간격 지정 */
+    gap: 30px;
+    margin-top: 5px;
+    background-color: white;
 }
