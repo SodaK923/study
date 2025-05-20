@@ -42,11 +42,38 @@ function App() {
     idRef.current+=1;
   };
 
+const onUpdate = (targetId) => {
+  // setTodo로 상태 업데이트 시작
+  setTodo(
+    // todo 배열을 map으로 돌면서
+    todo.map((item) => {
+      // 만약 현재 아이템 id가 targetId랑 같으면
+      if (item.id === targetId) {
+        // 해당 아이템의 isDone 값을 반전시킨 새 객체를 반환
+        // (예: true면 false로, false면 true로 바꿈)
+        return { ...item, isDone: !item.isDone };
+      } else {
+        // 아니면 원래 아이템 그대로 반환
+        return item;
+      }
+    })
+  );
+};
+
+const onDelete=(targetId)=>{
+  setTodo(
+    todo.filter((item)=>item.id!==targetId)
+  );
+}
+
+
+
   return (
     <div className='App'>
       <Header />
       <TodoEditor onCreate={onCreate} />
-      <TodoList />
+      {/* todo 배열을 TodoList에 props로 넘김 */}
+      <TodoList todo={todo} onUpdate={onUpdate} onDelete={onDelete} />
     </div>
   )
 }
