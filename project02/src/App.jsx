@@ -1,5 +1,5 @@
 import './App.css'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 import Header from './component/Header'
 import TodoEditor from './component/TodoEditor'
@@ -29,7 +29,22 @@ const mockTodo=[
 
 function App() {
   const [todo, setTodo]=useState(mockTodo);
-  const idRef=useRef(3);
+  const idRef=useRef(0);
+
+  useEffect(()=>{
+    let rawTodo=localStorage.getItem("todos");
+    if(!rawTodo){
+      rawTodo=JSON.stringify([]);
+    }
+    const localTodo=JSON.parse(rawTodo);
+    setTodo(localTodo);
+
+    if(localTodo.length===0){
+      return;
+    }
+    localTodo.sort((a,b)=>Number(b.id)-Number(a.id));
+    idRef.current=localTodo[0].id+1;
+  },[]);
 
   const onCreate=(content)=>{
     const newItem={
@@ -37,33 +52,32 @@ function App() {
       content: content,
       isDone: false,
       createDate: new Date().getTime()
-    };
-    setTodo([newItem, ...todo]);
+    }
+    const newTodo=[newItem, ...todo];
+    setTodo(newTodo);
     idRef.current+=1;
+    localStorage.setItem("todos", JSON.stringify(newTodo));
   };
 
 const onUpdate = (targetId) => {
-  // setTodo로 상태 업데이트 시작
-  setTodo(
-    // todo 배열을 map으로 돌면서
-    todo.map((item) => {
-      // 만약 현재 아이템 id가 targetId랑 같으면
-      if (item.id === targetId) {
-        // 해당 아이템의 isDone 값을 반전시킨 새 객체를 반환
-        // (예: true면 false로, false면 true로 바꿈)
-        return { ...item, isDone: !item.isDone };
-      } else {
-        // 아니면 원래 아이템 그대로 반환
+  const newTodo=todo.map(
+    (item)=>{
+      if(item.id===targetId){
+        return {...item, isDone: !item.isDone};
+      }
+      else{
         return item;
       }
-    })
+    }
   );
+  setTodo(newTodo);
+  localStorage.setItem("todos", JSON.stringify(newTodo));
 };
 
 const onDelete=(targetId)=>{
-  setTodo(
-    todo.filter((item)=>item.id!==targetId)
-  );
+  const newTodo=todo.filter((item)=>item.id!==targetId);
+  setTodo(newTodo);
+  localStorage.setItem("todos", JSON.stringify(newTodo));
 }
 
 
